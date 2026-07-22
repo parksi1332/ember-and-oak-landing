@@ -48,6 +48,7 @@
   flex-wrap: wrap;
   padding-block: 1.75rem;
 }
+.site-footer__font-credit { font-size: 0.78rem; }
 .site-footer__social { color: var(--on-dark-caption); }
 .site-footer__social:hover { color: var(--roast-light); }
 .site-footer__sources { margin-left: auto; }

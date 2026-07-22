@@ -18,7 +18,7 @@
 .brew__step.is-done { opacity: 0.55; }
 .brew__step-num { font-family: var(--font-display-latin); font-weight: 700; color: var(--accent); }
 .brew__step-body { display: flex; flex-direction: column; gap: 0.15rem; }
-.brew__step-body strong { font-family: var(--font-display); font-size: 1.05rem; }
+.brew__step-body strong { font-family: var(--font-title); font-weight: 600; font-size: 1.05rem; }
 
 .brew__timer { display: flex; align-items: center; gap: 1.5rem; margin-top: 2.25rem; flex-wrap: wrap; }
 .brew__dial { width: 5.5rem; height: 5.5rem; transform: rotate(-90deg); flex-shrink: 0; }

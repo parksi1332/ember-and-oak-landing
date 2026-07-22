@@ -1,174 +1,113 @@
+/* EMBER & OAK — infographics rev3: "Roaster's Ledger" system
+   (01_design_direction.md §R3-A, SUPERSEDES the rev1 dark-dashboard-tile look).
+   Common rules for all 4 IGs: warm cream PAPER tile (never a dark dashboard
+   card, even inside a dark section band), solid hairline axes (no dashed
+   lines), thin marks (<=14px), IBM Plex Mono numbers, labels never colored by
+   series (a color dot swatch carries identity instead), all marks are real
+   inline SVG (no div/CSS-primitive bars or donuts). */
+
 .ig {
-  background: var(--surface);
+  background: var(--ig-surface);
+  color: var(--ig-ink);
   border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 3vw, 2.25rem);
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
-.section--dark .ig { background: rgba(237, 228, 212, 0.06); }
-.ig__head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-.ig__title { font-size: 1.15rem; font-weight: 600; margin: 0; }
+/* faint paper grain — one shared feTurbulence layer, ~3% opacity (R3-A "크래프트 악센트") */
+.ig::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.ig__head { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+.ig__head-icon { color: var(--ig-caption); flex-shrink: 0; width: 1.4rem; height: 1.4rem; margin-top: 0.1rem; }
+.ig__head-text { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+/* ".ig " prefix (not just ".ig__title") deliberately raises specificity above
+   the global ".section--dark h3 { color: var(--on-dark) }" rule — IG tiles are
+   always paper, so their heading must always be dark ink, even in a dark band. */
+.ig .ig__title { font-family: var(--font-title); font-weight: 600; font-size: 1.05rem; margin: 0; color: var(--ig-ink); }
+/* tag-chip stays the light/paper variant inside IG tiles regardless of the
+   ambient section (IG tiles are always paper, even in .section--dark bands). */
+.ig .tag-chip { background: rgba(180, 71, 31, 0.12); color: var(--accent); }
 
-/* ---- IG-1 roast chart ---- */
-.ig1__marker-label {
-  position: absolute;
-  top: 1.1rem;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  white-space: nowrap;
-}
-.ig--compact.ig1 { padding-top: 2.5rem; }
-.ig1__rows { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
-.ig1__row { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: center; transition: opacity 0.3s ease; }
-.ig1__row.is-dim { opacity: 0.35; }
-.ig1__row-label { font-family: var(--font-display); font-weight: 600; }
-.ig1__track { position: relative; height: 2rem; background: var(--bg); border-radius: 999px; overflow: visible; }
-.section--dark .ig1__track { background: rgba(0,0,0,0.25); }
-.ig1__marker-line {
-  position: absolute;
-  top: -4px;
-  bottom: -4px;
-  width: 2px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transition: transform 0.5s var(--ease-out-quart);
-}
-.ig1__marker-line.is-visible { transform: scaleY(1); }
+.ig__svg { display: block; width: 100%; height: auto; overflow: visible; position: relative; z-index: 1; }
+.ig__svg text { fill: var(--ig-ink); }
+.ig__mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ig__name-text { font-family: var(--font-title); font-weight: 600; }
+.ig__caption-text { font-family: var(--font-mono); fill: var(--ig-caption); }
+.ig__axis-line { stroke: var(--ig-axis); stroke-width: 1; }
+.ig__axis-tick { stroke: var(--ig-axis); stroke-width: 1; }
+
+/* ---- IG-1 roast ledger (shared temperature axis, small multiples) ---- */
+.ig1__row { transition: opacity 0.3s ease; }
+.ig1__row--dim { opacity: 0.32; }
 .ig1__bar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform-box: fill-box;
+  transform-origin: left center;
   transform: scaleX(0);
-  transform-origin: left;
   transition: transform 0.6s var(--ease-out-quart);
 }
 .ig1__bar.is-visible { transform: scaleX(1); }
-.ig1__bar-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: #fbf3e7;
-  white-space: nowrap;
-  padding-inline: 0.5rem;
-}
-.ig1__meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; grid-column: 1 / -1; margin-top: -0.4rem; }
-.ig1__axis { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--caption); margin-top: 0.75rem; }
-@media (max-width: 560px) {
-  .ig1__row { grid-template-columns: 1fr; }
-}
-
-/* ---- IG-2 altitude scale ---- */
-.ig2__body { display: flex; gap: 2rem; align-items: center; }
-.ig2__gauge { position: relative; width: 6rem; height: 16rem; background: var(--bg); border-radius: 999px; flex-shrink: 0; }
-.section--dark .ig2__gauge { background: rgba(0,0,0,0.25); }
-.ig2__band {
-  position: absolute;
-  left: 0.4rem;
-  right: 0.4rem;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--roast-medium), var(--roast-light));
-  opacity: 0.85;
+.ig1__marker-line {
+  transform-box: fill-box;
   transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.7s var(--ease-out-quart);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out-quart);
 }
-.ig2__band.is-visible { transform: scaleY(1); }
-.ig2__band-label {
-  position: absolute;
-  left: 100%;
-  margin-left: 0.75rem;
-  transform: translateY(-0.6em);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  white-space: nowrap;
-  color: var(--caption);
-}
-.ig2__pin {
-  position: absolute;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transform: translate(-50%, -50%) scale(0.4);
-  opacity: 0;
-  transition: transform 0.45s var(--ease-overshoot), opacity 0.3s ease;
-}
-.ig2__pin.is-visible { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-.ig2__pin-dot { width: 0.85rem; height: 0.85rem; border-radius: 50%; box-shadow: 0 0 0 3px var(--surface); flex-shrink: 0; }
-.ig2__pin-label {
-  position: absolute;
-  left: calc(-50% - 1.1rem);
-  transform: translateX(-100%);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  white-space: nowrap;
-  color: var(--ink);
-}
-.section--dark .ig2__pin-label { color: var(--on-dark); }
-.ig2__axis-top, .ig2__axis-bottom {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--caption);
-}
-.ig2__axis-top { top: -1.3rem; }
-.ig2__axis-bottom { bottom: -1.3rem; }
-.ig2__caption { max-width: 14rem; }
-@media (max-width: 560px) {
-  .ig2__body { flex-direction: column; align-items: flex-start; }
-  .ig2__gauge { margin-inline: auto; }
-}
+.ig1__marker-line.is-visible { transform: scaleY(1); }
+.ig1__value-label { font-size: 11px; }
+.ig1__name-label { font-size: 13px; }
+.ig1__meta-label { font-size: 9px; letter-spacing: 0.02em; }
+.ig1__axis-label { font-size: 10px; }
+.ig1__marker-label { font-size: 10px; fill: var(--accent); }
 
-/* ---- IG-3 brew dial ---- */
-.ig3__dial {
-  --under-end: 216deg;
-  --optimal-end: 288deg;
-  position: relative;
-  width: 13rem;
-  height: 13rem;
-  border-radius: 50%;
-  margin-inline: auto;
-  background: conic-gradient(
-    var(--brew-under) 0deg var(--under-end),
-    var(--brew-optimal) var(--under-end) var(--optimal-end),
-    var(--brew-over) var(--optimal-end) 360deg
-  );
-  opacity: 0;
-  transform: scale(0.85) rotate(-20deg);
-  transition: opacity 0.6s var(--ease-out-quart), transform 0.6s var(--ease-out-quart);
-}
-.ig3__dial.is-visible { opacity: 1; transform: scale(1) rotate(0deg); }
-.ig3__dial::after { content: ""; position: absolute; inset: 1.1rem; border-radius: 50%; background: var(--surface); }
-.section--dark .ig3__dial::after { background: #241a12; }
-.ig3__center {
-  position: absolute;
-  inset: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.15rem;
-  z-index: 1;
-}
-.ig3__ratio { font-family: var(--font-display-latin); font-size: 2rem; font-weight: 560; }
-.ig3__deg-label { position: absolute; font-family: var(--font-mono); font-size: 0.7rem; color: var(--caption); }
-.ig3__deg-label--start { bottom: -0.2rem; left: 0.4rem; }
-.ig3__deg-label--end { bottom: -0.2rem; right: 0.4rem; }
-.ig3__legend { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1.5rem; font-size: 0.85rem; }
+/* ---- IG-2 altitude core-sample gauge ---- */
+.ig2__band { fill: var(--roast-medium); opacity: 0; transition: opacity 0.5s ease 0.1s; }
+.ig2__band.is-visible { opacity: 0.14; }
+.ig2__column { fill: none; stroke: var(--ig-axis); stroke-width: 1; }
+.ig2__pin-dot { opacity: 0; transform: scale(0.4); transform-origin: center; transition: transform 0.45s var(--ease-overshoot), opacity 0.3s ease; transform-box: fill-box; }
+.ig2__pin-dot.is-visible { opacity: 1; transform: scale(1); }
+.ig2__pin-leader { stroke: var(--ig-axis); stroke-width: 1; }
+.ig2__pin-name { font-family: var(--font-title); font-weight: 600; font-size: 11px; }
+.ig2__pin-value { font-family: var(--font-mono); font-size: 10.5px; fill: var(--ig-caption); }
+.ig2__tick-label { font-size: 10px; fill: var(--ig-caption); }
+.ig2__band-label { font-size: 10px; fill: var(--ig-caption); }
+.ig2__caption { max-width: none; margin-top: 1rem; display: flex; align-items: center; gap: 0.5em; }
+.ig2__caption .icon { color: var(--ig-caption); flex-shrink: 0; }
+
+/* ---- IG-3 brewing dial ("paper brass gauge") ---- */
+.ig3__body { display: flex; flex-direction: column; align-items: center; }
+.ig3__dial-wrap { position: relative; width: 13rem; height: 13rem; }
+.ig3__dial-svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transform: scale(0.88); transition: opacity 0.6s var(--ease-out-quart), transform 0.6s var(--ease-out-quart); }
+.ig3__dial-svg.is-visible { opacity: 1; transform: scale(1); }
+.ig3__center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.1rem; pointer-events: none; }
+.ig3__track { fill: none; stroke: var(--brew-optimal); stroke-opacity: 0.18; stroke-linecap: round; }
+.ig3__arc { fill: none; stroke-linecap: round; }
+.ig3__arc--under { stroke: var(--brew-under); }
+.ig3__arc--optimal { stroke: var(--brew-optimal); }
+.ig3__arc--over { stroke: var(--brew-over); }
+.ig3__needle { stroke: var(--ig-ink); stroke-width: 2; stroke-linecap: round; }
+.ig3__needle-cap { fill: var(--ig-ink); }
+.ig3__tick-line { stroke: var(--ig-axis); stroke-width: 1; }
+.ig3__tick-label { font-size: 9.5px; fill: var(--ig-caption); }
+.ig3__ratio { font-family: var(--font-mono); font-weight: 500; font-size: clamp(2.1rem, 5vw, 2.75rem); }
+.ig3__legend { display: flex; flex-direction: column; gap: 0.45rem; margin-top: 1rem; font-size: 0.85rem; width: 100%; max-width: 15rem; }
 .ig3__legend span { display: flex; align-items: center; gap: 0.5rem; }
-.ig3__swatch { width: 0.75rem; height: 0.75rem; border-radius: 50%; display: inline-block; }
+.ig3__legend .ig__mono { color: var(--ig-caption); margin-left: auto; }
+.ig3__swatch { width: 0.7rem; height: 0.7rem; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 .ig3__tds { margin-top: 1rem; }
 
-/* ---- IG-4 market growth ---- */
+/* ---- IG-4 market growth ledger + stat tiles (donuts retired, R3-A) ---- */
 .ig4__chart { position: relative; }
-.ig4__area-svg { width: 100%; height: auto; aspect-ratio: 320 / 140; overflow: visible; }
+.ig4__area-svg { width: 100%; height: auto; aspect-ratio: 320 / 150; overflow: visible; }
+.ig4__gridline { stroke: var(--ig-axis); stroke-width: 1; }
+.ig4__grid-label { font-size: 8.5px; fill: var(--ig-caption); }
 .ig4__area, .ig4__line {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
@@ -178,35 +117,30 @@
 path.ig4__area { transition: opacity 0.8s ease 0.2s; }
 .ig4__area.is-visible { opacity: 1; }
 .ig4__line.is-visible { stroke-dashoffset: 0; opacity: 1; }
-.ig4__chart-labels { display: flex; justify-content: space-between; margin-top: 0.5rem; }
+.ig4__endpoint { opacity: 0; transition: opacity 0.4s ease 0.6s; }
+.ig4__endpoint.is-visible { opacity: 1; }
+.ig4__leader-line { stroke: var(--ig-axis); stroke-width: 1; }
+.ig4__cagr-label { font-family: var(--font-mono); font-size: 11px; fill: var(--ig-ink); }
+.ig4__chart-labels { display: flex; justify-content: space-between; margin-top: 0.75rem; }
 .ig4__point { display: flex; flex-direction: column; }
-.ig4__point-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--caption); }
-.ig4__point-value { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
-.ig4__cagr { position: absolute; top: 0; right: 0; }
-.ig4__donuts { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
-.ig4__donut { position: relative; width: 7rem; height: 7rem; }
-.ig4__donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.ig4__donut-track { fill: none; stroke: var(--bg); stroke-width: 9; }
-.section--dark .ig4__donut-track { stroke: rgba(0,0,0,0.25); }
-.ig4__donut-value { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dasharray 0.2s linear; }
-.ig4__donut-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 0.1rem;
-}
-.ig4__donut-label strong { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; }
-.ig4__donut-label .caption { font-size: 0.68rem; max-width: 5rem; line-height: 1.2; }
+.ig4__point-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ig-caption); }
+.ig4__point-value { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 500; color: var(--ig-ink); }
+
+.ig4__stats { display: flex; gap: 1.25rem; margin-top: 1.75rem; flex-wrap: wrap; }
+.ig4__stat { flex: 1; min-width: 8rem; padding: 1rem 1.1rem; border-radius: var(--radius-md); background: rgba(107, 91, 78, 0.07); }
+.ig4__stat-value { display: block; font-family: var(--font-mono); font-weight: 500; font-size: clamp(2rem, 5vw, 2.5rem); color: var(--ig-ink); }
+.ig4__stat-label { display: block; margin-top: 0.25rem; font-size: 0.82rem; color: var(--ig-caption); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ig1__marker-line, .ig1__bar, .ig2__band, .ig2__pin, .ig3__dial, .ig4__area, .ig4__line {
+  .ig1__marker-line, .ig1__bar, .ig2__band, .ig2__pin-dot, .ig3__dial-svg,
+  .ig4__area, .ig4__line, .ig4__endpoint {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
   }
+}
+
+@media (max-width: 560px) {
+  .ig4__stats { flex-direction: column; }
 }

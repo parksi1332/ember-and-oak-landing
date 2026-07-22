@@ -6,12 +6,13 @@ import { IG1RoastChart } from "./infographics/IG1RoastChart";
 import "./Roast.css";
 
 /**
- * Animation #2 (C1-specified) + #8 (01_design_direction.md §6 rev2): roast-level
+ * Animation #2 (C1-specified) + #8 (01_design_direction.md §R3-B rev3): roast-level
  * slider crossfades bean imagery, swaps temp/time/notes labels, and steps the
- * roast name through MaruBuri's discrete weights (Light 300 -> SemiBold 600 ->
- * Bold 700) with a 120ms opacity crossfade at each swap — MaruBuri isn't a
- * variable font, so the weight can't interpolate continuously — and drives a
- * spring-tracked temperature-readout cursor.
+ * roast name (rendered in Chusa Love) through its 2 discrete weights — Regular
+ * 400 for Light/Medium, Bold 700 for Dark — with a 130ms ink-bleed crossfade
+ * (opacity dip + soft blur) at the swap, approximating brush ink bleeding as
+ * the weight snaps (Chusa isn't a variable font, so weight can't interpolate
+ * continuously) — and drives a spring-tracked temperature-readout cursor.
  */
 export function Roast() {
   const [step, setStep] = useState(0);
@@ -21,7 +22,7 @@ export function Roast() {
 
   useEffect(() => {
     setSwapping(true);
-    const t = setTimeout(() => setSwapping(false), 120);
+    const t = setTimeout(() => setSwapping(false), 130);
     return () => clearTimeout(t);
   }, [step]);
 

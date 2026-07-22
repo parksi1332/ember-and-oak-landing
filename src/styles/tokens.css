@@ -1,8 +1,10 @@
 /* EMBER & OAK — design tokens (D1 02_design_result.md §A, verbatim) */
 :root{
-  /* type (rev2 — MaruBuri promoted to headline lead, Korean copy is now primary) */
-  --font-display:"MaruBuri",Georgia,serif;
-  --font-display-latin:"Fraunces","MaruBuri",Georgia,serif; /* 브랜드 워드마크·대형 넘버링 전용 */
+  /* type (rev3 — Chusa Love brush calligraphy promoted to headline lead for
+     short phrases only; Pretendard now carries long/running titles & UI text) */
+  --font-display:"Chusa Love","MaruBuri",Georgia,serif;      /* short phrases, large size only: Hero H1, S4 roast name */
+  --font-title:"Pretendard",system-ui,sans-serif;             /* structural: section titles, card headings, running UI text */
+  --font-display-latin:"Fraunces","Chusa Love",Georgia,serif; /* 브랜드 워드마크·대형 넘버링 전용 */
   --font-body:"Pretendard",system-ui,sans-serif;
   --font-mono:"IBM Plex Mono","Pretendard",ui-monospace,monospace; /* 한글 폴백 필수 */
 
@@ -15,11 +17,21 @@
   /* roast spine (S4 slider · IG-1 · sequential) */
   --roast-light:#C0793D;  --roast-medium:#9A5A2B; --roast-dark:#3E2A1E;
 
-  /* origins (S3 · categorical) */
-  --org-ethiopia:#5B4A7A; --org-colombia:#A8632E; --org-kenya:#7A2E3A;
+  /* origins (S3 · categorical — rev3: CVD-validated trio, replaces rev2 values
+     which failed lightness-band/chroma-floor checks) */
+  --org-ethiopia:#6A4C9C; --org-colombia:#AE6A2E; --org-kenya:#8A2F52;
 
   /* brew gauge (IG-3) */
   --brew-optimal:#6E7B52; --brew-under:#8C9AA3;   --brew-over:#B4471F;
+
+  /* roaster's ledger — IG paper surface (rev3 R3-A). Stays a light paper tile
+     in BOTH the page's dark bands and prefers-color-scheme:dark — never goes
+     dark-on-dark. --ig-ink/--ig-caption/--ig-axis are intentionally NOT
+     redefined in the dark media query below so they keep reading as ink on paper. */
+  --ig-surface:#EBE3D4;
+  --ig-ink:#2B211A;
+  --ig-caption:#6B5B4E;
+  --ig-axis:rgba(107,91,78,0.20);
 
   /* derived */
   --shadow-soft: 0 20px 60px -20px rgba(36, 26, 18, 0.35);
@@ -36,8 +48,9 @@
     --accent:#D9642E;     --accent-hover:#E67A45;
     --on-dark:#EFE6D6;    --on-dark-caption:#A89885;
     --roast-light:#D08A4E;--roast-medium:#B97440; --roast-dark:#7A5236;
-    --org-ethiopia:#7C68A0;--org-colombia:#C67E43;--org-kenya:#A24A58;
+    --org-ethiopia:#8868BD;--org-colombia:#D58844;--org-kenya:#BE386C;
     --brew-optimal:#8A9968;--brew-under:#A6B4BC;  --brew-over:#D9642E;
     --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+    --ig-surface:#D8CDBA;
   }
 }

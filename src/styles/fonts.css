@@ -1,6 +1,13 @@
-/* EMBER & OAK — self-hosted fonts (D1 01_design_direction.md §2 rev2, verbatim)
+/* EMBER & OAK — self-hosted fonts (D1 01_design_direction.md §R3-B rev3, verbatim)
    Paths are relative to this file (src/styles/fonts.css -> src/assets/fonts/)
    so Vite resolves + hashes them under the configured base path. */
+/* rev3 — brush calligraphy display, promoted to headline lead (short phrases only).
+   License: KOGL 공공누리 제1유형 (출처표시 필수 — credit line lives in Footer/S8). */
+@font-face{font-family:"Chusa Love";src:url("../assets/fonts/ChusaLove-Regular.woff2") format("woff2");
+  font-weight:400;font-display:swap;}
+@font-face{font-family:"Chusa Love";src:url("../assets/fonts/ChusaLove-Bold.woff2") format("woff2");
+  font-weight:700;font-display:swap;}
+/* MaruBuri — demoted from headline role (rev3), files kept for potential future use */
 @font-face{font-family:"MaruBuri";src:url("../assets/fonts/MaruBuri-Light.woff2") format("woff2");
   font-weight:300;font-display:swap;}
 @font-face{font-family:"MaruBuri";src:url("../assets/fonts/MaruBuri-Regular.woff2") format("woff2");

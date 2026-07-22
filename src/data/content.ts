@@ -86,7 +86,7 @@ export const roast = {
       time: "6~9분",
       notes: "과일향 · 산미",
       color: "var(--roast-light)",
-      weight: 300,
+      weight: 400,
       image: roastBeanLight,
     },
     {
@@ -96,7 +96,7 @@ export const roast = {
       time: "7~11분",
       notes: "단맛 · 균형",
       color: "var(--roast-medium)",
-      weight: 600,
+      weight: 400,
       image: roastBeanMedium,
     },
     {
@@ -149,7 +149,7 @@ export const ig3 = {
   ratio: "1 : 16",
   tempMin: 92,
   tempMax: 96,
-  gaugeMin: 80,
+  gaugeMin: 85,
   gaugeMax: 100,
   tds: "TDS 1.15~1.35%",
   unit: "커피 : 물",
@@ -209,6 +209,7 @@ export const footer = {
   newsletterSubmit: "구독하기",
   newsletterThanks: "감사합니다 — 받은편지함을 확인해주세요.",
   copyright: "© 2026 Ember & Oak Roasters",
+  fontCredit: "글꼴: 추사사랑체 (문화체육관광부·한국저작권위원회, KOGL 제1유형)",
   marquee: "소량 배치 · 주문 후 로스팅 · 48시간 내 배송 · ",
   sourcesLabel: "데이터 출처",
   sources: [

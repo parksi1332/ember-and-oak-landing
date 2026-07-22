@@ -1,5 +1,8 @@
-// Lucide icons (via Iconify, MIT) — bundled inline so `currentColor` inherits
-// the surrounding text color. D1 asset manifest: src/icons/*.svg (15 total).
+// Phosphor duotone icons (via Iconify, MIT — rev3 SUPERSEDE of Lucide) — bundled
+// inline so `currentColor` inherits the surrounding text color; the duotone
+// secondary layer (opacity .2) rides along automatically since both layers
+// share `fill="currentColor"`. D1 01_design_direction.md §R3-C: src/icons/*.svg
+// (16 total incl. coffee-bean bonus).
 const modules = import.meta.glob("../icons/*.svg", {
   eager: true,
   query: "?raw",
@@ -15,6 +18,7 @@ for (const path in modules) {
 export type IconName =
   | "arrow-right"
   | "coffee"
+  | "coffee-bean"
   | "droplet"
   | "flame"
   | "instagram"

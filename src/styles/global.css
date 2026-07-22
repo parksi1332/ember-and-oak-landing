@@ -17,7 +17,10 @@ img, video { max-width: 100%; display: block; }
 main > section { scroll-margin-top: 76px; }
 a { color: inherit; }
 button { font: inherit; }
-h1, h2, h3, h4 { margin: 0; color: var(--heading); font-family: var(--font-display); font-weight: 600; }
+/* rev3: structural default is Pretendard (--font-title) — headings are mostly
+   longer running phrases. Chusa Love (--font-display) is opt-in per-element
+   for large, short phrases only (Hero H1, S4 roast name). */
+h1, h2, h3, h4 { margin: 0; color: var(--heading); font-family: var(--font-title); font-weight: 600; }
 
 /* focus visibility (WCAG 2.4.11) */
 a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
@@ -58,8 +61,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .caption { color: var(--caption); font-size: 0.9rem; }
 .section--dark .caption { color: var(--on-dark-caption); }
 
-h1.display { font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1.02; letter-spacing: -0.01em; }
-h2.display { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; letter-spacing: -0.01em; }
+/* h1.display = Hero H1 only, rendered in Chusa Love (brush) — generous
+   line-height, zero tracking (tight tracking mangles brush strokes). */
+h1.display { font-family: var(--font-display); font-weight: 400; font-size: clamp(3rem, 7.5vw, 7rem); line-height: 1.15; letter-spacing: 0; }
+/* h2.display = section opening titles, stay in Pretendard SemiBold (structural). */
+h2.display { font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.1; letter-spacing: -0.01em; }
 h3.display { font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.2; }
 em.accent-italic { font-style: italic; color: var(--accent); }
 .section--dark em.accent-italic { color: var(--roast-light); }

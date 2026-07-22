@@ -73,6 +73,7 @@ export function Footer() {
 
         <div className="site-footer__bottom">
           <span className="caption">{footer.copyright}</span>
+          <span className="caption site-footer__font-credit">{footer.fontCredit}</span>
           <a href="#" aria-label="Instagram" className="site-footer__social">
             <Icon name="instagram" />
           </a>

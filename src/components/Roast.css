@@ -59,16 +59,20 @@
 @media (pointer: coarse) { .roast-cursor { display: none; } }
 
 .roast__name {
+  font-family: var(--font-display); /* Chusa Love — large + short phrase (rev3 R3-B) */
   font-size: clamp(2rem, 5vw, 3rem);
-  /* MaruBuri is not a variable font (4 discrete weights) — weight swap is a
-     120ms opacity crossfade at the step boundary (01_design_direction.md §6 #2),
-     not a continuous font-variation-settings interpolation. */
-  transition: opacity 0.12s ease-out, color 0.25s ease-out;
+  line-height: 1.15;
+  /* Chusa Love is not a variable font (2 discrete weights) — weight swap is a
+     130ms ink-bleed crossfade (opacity dip + soft blur) at the step boundary
+     (01_design_direction.md §R3-B), not a continuous font-variation-settings
+     interpolation. */
+  transition: opacity 0.13s ease-out, filter 0.13s ease-out, color 0.25s ease-out;
+  filter: blur(0);
 }
-.roast__name.is-swapping { opacity: 0.35; }
+.roast__name.is-swapping { opacity: 0.3; filter: blur(3px); }
 @media (prefers-reduced-motion: reduce) {
-  .roast__name { transition: color 0.25s ease-out; }
-  .roast__name.is-swapping { opacity: 1; }
+  .roast__name { transition: color 0.25s ease-out; filter: none; }
+  .roast__name.is-swapping { opacity: 1; filter: none; }
 }
 .roast__notes { text-transform: uppercase; letter-spacing: 0.06em; margin: 0.35rem 0 1.75rem; }
 
