@@ -1,0 +1,42 @@
+/* EMBER & OAK — design tokens (D1 02_design_result.md §A, verbatim) */
+:root{
+  /* type */
+  --font-display:"Fraunces","MaruBuri",Georgia,serif;
+  --font-body:"Manrope","Pretendard",system-ui,sans-serif;
+  --font-mono:"Space Mono","Pretendard",ui-monospace,monospace; /* 한글 폴백 필수 */
+
+  /* light (default) */
+  --bg:#F5F0E6;            --surface:#EBE3D4;      --band-dark:#241A12;
+  --ink:#2B211A;          --heading:#1E1610;      --caption:#6B5B4E;
+  --accent:#B4471F;       --accent-hover:#933614;
+  --on-dark:#EDE4D4;      --on-dark-caption:#B7A995;
+
+  /* roast spine (S4 slider · IG-1 · sequential) */
+  --roast-light:#C0793D;  --roast-medium:#9A5A2B; --roast-dark:#3E2A1E;
+
+  /* origins (S3 · categorical) */
+  --org-ethiopia:#5B4A7A; --org-colombia:#A8632E; --org-kenya:#7A2E3A;
+
+  /* brew gauge (IG-3) */
+  --brew-optimal:#6E7B52; --brew-under:#8C9AA3;   --brew-over:#B4471F;
+
+  /* derived */
+  --shadow-soft: 0 20px 60px -20px rgba(36, 26, 18, 0.35);
+  --radius-lg: 1.75rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.5rem;
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-overshoot: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#1B130D;         --surface:#2A1F16;      --band-dark:#120C07;
+    --ink:#EFE6D6;        --heading:#F6EEDF;      --caption:#A89885;
+    --accent:#D9642E;     --accent-hover:#E67A45;
+    --on-dark:#EFE6D6;    --on-dark-caption:#A89885;
+    --roast-light:#D08A4E;--roast-medium:#B97440; --roast-dark:#7A5236;
+    --org-ethiopia:#7C68A0;--org-colombia:#C67E43;--org-kenya:#A24A58;
+    --brew-optimal:#8A9968;--brew-under:#A6B4BC;  --brew-over:#D9642E;
+    --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+}

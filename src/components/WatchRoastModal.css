@@ -1,0 +1,35 @@
+.watch-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(18, 12, 7, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: watch-modal-fade 0.3s var(--ease-out-quart);
+}
+@keyframes watch-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.watch-modal__panel {
+  position: relative;
+  width: min(960px, 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: #000;
+}
+.watch-modal__video { width: 100%; display: block; max-height: 80vh; }
+.watch-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  background: rgba(18, 12, 7, 0.6);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  font-size: 1.5rem;
+  line-height: 1;
+}

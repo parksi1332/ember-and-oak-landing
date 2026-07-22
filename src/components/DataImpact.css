@@ -1,0 +1,17 @@
+.data-impact__grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.data-impact__cell { position: relative; }
+.data-impact__icon {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  color: var(--roast-light);
+  opacity: 0.6;
+}
+@media (max-width: 900px) {
+  .data-impact__grid { grid-template-columns: 1fr; }
+}

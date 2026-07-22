@@ -1,0 +1,99 @@
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+.nav--scrolled {
+  backdrop-filter: blur(10px) saturate(1.1);
+  box-shadow: 0 1px 0 rgba(43, 33, 26, 0.12);
+}
+.nav--menu-open {
+  background: color-mix(in srgb, var(--bg) 97%, transparent);
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: 0 1px 0 rgba(43, 33, 26, 0.12);
+}
+.nav__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.nav__row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 1rem;
+}
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--heading);
+  margin-right: auto;
+}
+.nav__logo .icon { color: var(--accent); }
+.nav__links {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
+}
+.nav__links a {
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out-quart);
+}
+.nav__links a:hover::after { transform: scaleX(1); }
+.nav__cta { padding: 0.6em 1.35em; min-height: 40px; font-size: 0.875rem; }
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav__burger span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+}
+.nav__mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0 1.5rem 1.5rem;
+}
+.nav__mobile a { text-decoration: none; color: var(--ink); font-size: 1.05rem; }
+
+@media (max-width: 860px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__burger { display: flex; }
+}
