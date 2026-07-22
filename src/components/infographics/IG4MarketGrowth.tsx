@@ -59,9 +59,9 @@ export function IG4MarketGrowth({ icon }: { icon?: "droplet" | "flame" | "scale"
           <circle cx={0} cy={120} r={5} fill="var(--roast-medium)" stroke="var(--ig-surface)" strokeWidth={2} className={`ig4__endpoint${inView ? " is-visible" : ""}`} />
           <circle cx={320} cy={10} r={5} fill="var(--roast-medium)" stroke="var(--ig-surface)" strokeWidth={2} className={`ig4__endpoint${inView ? " is-visible" : ""}`} />
 
-          <line x1={150} y1={53} x2={150} y2={30} className="ig4__leader-line" />
-          <line x1={150} y1={30} x2={196} y2={30} className="ig4__leader-line" />
-          <text x={200} y={33} className="ig4__cagr-label">{ig4.cagr}</text>
+          <line x1={110} y1={62} x2={110} y2={26} className="ig4__leader-line" />
+          <line x1={110} y1={26} x2={156} y2={26} className="ig4__leader-line" />
+          <text x={160} y={29} className="ig4__cagr-label">{ig4.cagr}</text>
         </svg>
         <div className="ig4__chart-labels">
           <div className="ig4__point ig4__point--from">
