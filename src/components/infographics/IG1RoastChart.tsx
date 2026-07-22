@@ -14,17 +14,17 @@ export function IG1RoastChart({ compact = false, highlightKey }: { compact?: boo
       {!compact && (
         <div className="ig__head">
           <span className="tag-chip">IG-1</span>
-          <h3 className="ig__title">Roast level, three ways</h3>
+          <h3 className="ig__title">{ig1.title}</h3>
         </div>
       )}
       <div className="ig1__marker-label" style={{ left: `${pct(ig1.firstCrack)}%` }}>
-        First Crack ~{ig1.firstCrack}°C
+        첫 크랙 ~{ig1.firstCrack}°C
       </div>
       <div className="ig1__rows">
         {ig1.rows.map((row, i) => {
-          const dim = highlightKey && highlightKey !== row.name.toLowerCase();
+          const dim = highlightKey && highlightKey !== row.key;
           return (
-            <div className={`ig1__row${dim ? " is-dim" : ""}`} key={row.name}>
+            <div className={`ig1__row${dim ? " is-dim" : ""}`} key={row.key}>
               <span className="ig1__row-label">{row.name}</span>
               <span className="ig1__track">
                 <span

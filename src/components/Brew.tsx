@@ -3,6 +3,8 @@ import { RevealText } from "./RevealText";
 import { Icon } from "./Icon";
 import { useBrewTimer } from "../hooks/useBrewTimer";
 import { useInView } from "../hooks/useInView";
+import brewPoster from "../assets/video/brew-poster.jpg";
+import brewPourVideo from "../assets/video/brew-pour.mp4";
 import "./Brew.css";
 
 const R = 54;
@@ -63,17 +65,17 @@ export function Brew() {
             <div className="brew__timer-controls">
               {!running && !done && (
                 <button className="btn btn--primary" onClick={start}>
-                  {elapsedMs > 0 ? "Resume" : "Start brewing"}
+                  {elapsedMs > 0 ? brew.timerResume : brew.timerStart}
                 </button>
               )}
               {running && (
                 <button className="btn btn--ghost" onClick={pause}>
-                  Pause
+                  {brew.timerPause}
                 </button>
               )}
               {(elapsedMs > 0 || done) && (
                 <button className="btn btn--ghost" onClick={reset}>
-                  Reset
+                  {brew.timerReset}
                 </button>
               )}
             </div>
@@ -81,11 +83,11 @@ export function Brew() {
         </div>
 
         <div ref={media.ref} className={`brew__media blend-frame reveal-fade${media.inView ? " is-visible" : ""}`}>
-          <video autoPlay muted loop playsInline preload="metadata" poster="/assets/video/brew-poster.jpg">
-            <source src="/assets/video/brew-pour.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline preload="metadata" poster={brewPoster}>
+            <source src={brewPourVideo} type="video/mp4" />
           </video>
           <span className="brew__media-tag tag-chip">
-            <Icon name="droplet" /> Drip bloom
+            <Icon name="droplet" /> {brew.mediaTag}
           </span>
         </div>
       </div>

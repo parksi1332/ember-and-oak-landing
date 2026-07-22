@@ -60,7 +60,15 @@
 
 .roast__name {
   font-size: clamp(2rem, 5vw, 3rem);
-  transition: font-variation-settings 0.25s ease-out, color 0.25s ease-out;
+  /* MaruBuri is not a variable font (4 discrete weights) — weight swap is a
+     120ms opacity crossfade at the step boundary (01_design_direction.md §6 #2),
+     not a continuous font-variation-settings interpolation. */
+  transition: opacity 0.12s ease-out, color 0.25s ease-out;
+}
+.roast__name.is-swapping { opacity: 0.35; }
+@media (prefers-reduced-motion: reduce) {
+  .roast__name { transition: color 0.25s ease-out; }
+  .roast__name.is-swapping { opacity: 1; }
 }
 .roast__notes { text-transform: uppercase; letter-spacing: 0.06em; margin: 0.35rem 0 1.75rem; }
 

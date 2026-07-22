@@ -2,6 +2,8 @@ import { useState } from "react";
 import { hero } from "../data/content";
 import { SmokyText } from "./SmokyText";
 import { WatchRoastModal } from "./WatchRoastModal";
+import heroPoster from "../assets/video/hero-poster.jpg";
+import heroVideo from "../assets/video/spare-coffee-a.mp4";
 import "./Hero.css";
 
 export function Hero() {
@@ -10,8 +12,8 @@ export function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero__media" aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/assets/video/hero-poster.jpg">
-          <source src="/assets/video/spare-coffee-a.mp4" type="video/mp4" />
+        <video autoPlay muted loop playsInline preload="metadata" poster={heroPoster}>
+          <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="hero__scrim" />
       </div>

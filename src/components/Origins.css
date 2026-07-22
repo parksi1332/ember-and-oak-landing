@@ -36,7 +36,7 @@
 .origins__card-body { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
 .origins__card-heading { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; color: var(--card-accent); }
 .origins__card-heading .icon { color: var(--card-accent); }
-.origins__card-heading strong { font-family: var(--font-display); font-weight: 560; color: var(--heading); font-size: 1.05rem; }
+.origins__card-heading strong { font-family: var(--font-display); font-weight: 600; color: var(--heading); font-size: 1.05rem; }
 .origins__card-notes { display: flex; align-items: center; gap: 0.5em; color: var(--caption); font-size: 0.9rem; }
 .origins__card-notes .icon { color: var(--card-accent); }
 

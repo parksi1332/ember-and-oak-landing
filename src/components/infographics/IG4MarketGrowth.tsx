@@ -23,7 +23,7 @@ export function IG4MarketGrowth() {
     <div ref={ref} className="ig ig4">
       <div className="ig__head">
         <span className="tag-chip">IG-4</span>
-        <h3 className="ig__title">Market growth</h3>
+        <h3 className="ig__title">{ig4.title}</h3>
       </div>
 
       <div className="ig4__chart">

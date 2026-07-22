@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import watchRoastVideo from "../assets/video/watch-roast.mp4";
 import "./WatchRoastModal.css";
 
 export function WatchRoastModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -21,13 +22,13 @@ export function WatchRoastModal({ open, onClose }: { open: boolean; onClose: () 
   if (!open) return null;
 
   return (
-    <div className="watch-modal" role="dialog" aria-modal="true" aria-label="Watch a roast" onClick={onClose}>
+    <div className="watch-modal" role="dialog" aria-modal="true" aria-label="로스팅 지켜보기" onClick={onClose}>
       <div className="watch-modal__panel" onClick={(e) => e.stopPropagation()}>
-        <button ref={closeBtnRef} className="watch-modal__close btn btn--icon btn--ghost" onClick={onClose} aria-label="Close video">
+        <button ref={closeBtnRef} className="watch-modal__close btn btn--icon btn--ghost" onClick={onClose} aria-label="영상 닫기">
           ×
         </button>
         <video
-          src="/assets/video/watch-roast.mp4"
+          src={watchRoastVideo}
           controls
           autoPlay
           playsInline

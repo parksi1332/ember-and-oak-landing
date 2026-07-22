@@ -43,7 +43,7 @@ export function Footer() {
             <h4>{footer.newsletterTitle}</h4>
             <p className="caption">{footer.newsletterSub}</p>
             {submitted ? (
-              <p className="site-footer__thanks">Thanks — check your inbox.</p>
+              <p className="site-footer__thanks">{footer.newsletterThanks}</p>
             ) : (
               <form
                 className="site-footer__form"
@@ -53,7 +53,7 @@ export function Footer() {
                 }}
               >
                 <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
+                  {footer.newsletterEmailLabel}
                 </label>
                 <input
                   id="newsletter-email"
@@ -64,7 +64,7 @@ export function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <button type="submit" className="btn btn--primary">
-                  Subscribe
+                  {footer.newsletterSubmit}
                 </button>
               </form>
             )}
@@ -77,7 +77,7 @@ export function Footer() {
             <Icon name="instagram" />
           </a>
           <details className="site-footer__sources">
-            <summary className="caption">Data sources</summary>
+            <summary className="caption">{footer.sourcesLabel}</summary>
             <ol>
               {footer.sources.map((s) => (
                 <li key={s} className="caption">

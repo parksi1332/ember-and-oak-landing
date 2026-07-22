@@ -1,13 +1,14 @@
 import { shop } from "../data/content";
 import { RevealText } from "./RevealText";
 import { Icon } from "./Icon";
+import beansRusticTable from "../assets/images/beans-rustic-table.jpg";
 import "./Shop.css";
 
 export function Shop() {
   return (
     <section id="shop" className="section shop">
       <div className="shop__texture" aria-hidden="true">
-        <img src="/assets/images/beans-rustic-table.jpg" alt="" />
+        <img src={beansRusticTable} alt="" />
       </div>
       <div className="container shop__content">
         <RevealText as="h2" className="display" lines={[shop.title]} />

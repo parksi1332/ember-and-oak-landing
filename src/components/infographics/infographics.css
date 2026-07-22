@@ -6,7 +6,7 @@
 }
 .section--dark .ig { background: rgba(237, 228, 212, 0.06); }
 .ig__head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
-.ig__title { font-size: 1.15rem; font-weight: 520; margin: 0; }
+.ig__title { font-size: 1.15rem; font-weight: 600; margin: 0; }
 
 /* ---- IG-1 roast chart ---- */
 .ig1__marker-label {
@@ -23,7 +23,7 @@
 .ig1__rows { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
 .ig1__row { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: center; transition: opacity 0.3s ease; }
 .ig1__row.is-dim { opacity: 0.35; }
-.ig1__row-label { font-family: var(--font-display); font-weight: 560; }
+.ig1__row-label { font-family: var(--font-display); font-weight: 600; }
 .ig1__track { position: relative; height: 2rem; background: var(--bg); border-radius: 999px; overflow: visible; }
 .section--dark .ig1__track { background: rgba(0,0,0,0.25); }
 .ig1__marker-line {
@@ -157,7 +157,7 @@
   gap: 0.15rem;
   z-index: 1;
 }
-.ig3__ratio { font-family: var(--font-display); font-size: 2rem; font-weight: 560; }
+.ig3__ratio { font-family: var(--font-display-latin); font-size: 2rem; font-weight: 560; }
 .ig3__deg-label { position: absolute; font-family: var(--font-mono); font-size: 0.7rem; color: var(--caption); }
 .ig3__deg-label--start { bottom: -0.2rem; left: 0.4rem; }
 .ig3__deg-label--end { bottom: -0.2rem; right: 0.4rem; }
@@ -181,7 +181,7 @@ path.ig4__area { transition: opacity 0.8s ease 0.2s; }
 .ig4__chart-labels { display: flex; justify-content: space-between; margin-top: 0.5rem; }
 .ig4__point { display: flex; flex-direction: column; }
 .ig4__point-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--caption); }
-.ig4__point-value { font-family: var(--font-display); font-size: 1.35rem; font-weight: 560; }
+.ig4__point-value { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
 .ig4__cagr { position: absolute; top: 0; right: 0; }
 .ig4__donuts { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
 .ig4__donut { position: relative; width: 7rem; height: 7rem; }
@@ -199,7 +199,7 @@ path.ig4__area { transition: opacity 0.8s ease 0.2s; }
   text-align: center;
   gap: 0.1rem;
 }
-.ig4__donut-label strong { font-family: var(--font-display); font-size: 1.15rem; }
+.ig4__donut-label strong { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; }
 .ig4__donut-label .caption { font-size: 0.68rem; max-width: 5rem; line-height: 1.2; }
 
 @media (prefers-reduced-motion: reduce) {

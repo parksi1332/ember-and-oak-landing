@@ -18,9 +18,9 @@ export function Nav() {
         </a>
 
         <nav className="nav__links" aria-label="Primary">
-          {nav.links.map((label) => (
-            <a key={label} href={`#${label.toLowerCase().replace(/\s+/g, "-")}`}>
-              {label}
+          {nav.links.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
             </a>
           ))}
         </nav>
@@ -31,7 +31,7 @@ export function Nav() {
 
         <button
           className="nav__burger"
-          aria-label="Toggle menu"
+          aria-label="메뉴 열기/닫기"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -43,9 +43,9 @@ export function Nav() {
 
       {open && (
         <nav className="nav__mobile" aria-label="Primary mobile">
-          {nav.links.map((label) => (
-            <a key={label} href={`#${label.toLowerCase().replace(/\s+/g, "-")}`} onClick={() => setOpen(false)}>
-              {label}
+          {nav.links.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+              {link.label}
             </a>
           ))}
           <a href="#shop" className="btn btn--primary" onClick={() => setOpen(false)}>

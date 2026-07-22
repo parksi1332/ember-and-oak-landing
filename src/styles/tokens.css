@@ -1,9 +1,10 @@
 /* EMBER & OAK — design tokens (D1 02_design_result.md §A, verbatim) */
 :root{
-  /* type */
-  --font-display:"Fraunces","MaruBuri",Georgia,serif;
-  --font-body:"Manrope","Pretendard",system-ui,sans-serif;
-  --font-mono:"Space Mono","Pretendard",ui-monospace,monospace; /* 한글 폴백 필수 */
+  /* type (rev2 — MaruBuri promoted to headline lead, Korean copy is now primary) */
+  --font-display:"MaruBuri",Georgia,serif;
+  --font-display-latin:"Fraunces","MaruBuri",Georgia,serif; /* 브랜드 워드마크·대형 넘버링 전용 */
+  --font-body:"Pretendard",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono","Pretendard",ui-monospace,monospace; /* 한글 폴백 필수 */
 
   /* light (default) */
   --bg:#F5F0E6;            --surface:#EBE3D4;      --band-dark:#241A12;

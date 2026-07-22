@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <a href="#top" className="skip-link">
-        Skip to content
+        본문으로 건너뛰기
       </a>
       <Nav />
       <main>

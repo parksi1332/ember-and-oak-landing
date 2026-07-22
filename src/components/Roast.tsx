@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { roast } from "../data/content";
 import { RevealText } from "./RevealText";
 import { RoastCursor } from "./RoastCursor";
@@ -6,15 +6,24 @@ import { IG1RoastChart } from "./infographics/IG1RoastChart";
 import "./Roast.css";
 
 /**
- * Animation #2 (C1-specified) + #8 (01_design_direction.md §6): roast-level
- * slider crossfades bean imagery, swaps temp/time/notes labels, morphs the
- * roast name's Fraunces variable weight 340 -> 720, and drives a spring-tracked
- * temperature-readout cursor.
+ * Animation #2 (C1-specified) + #8 (01_design_direction.md §6 rev2): roast-level
+ * slider crossfades bean imagery, swaps temp/time/notes labels, and steps the
+ * roast name through MaruBuri's discrete weights (Light 300 -> SemiBold 600 ->
+ * Bold 700) with a 120ms opacity crossfade at each swap — MaruBuri isn't a
+ * variable font, so the weight can't interpolate continuously — and drives a
+ * spring-tracked temperature-readout cursor.
  */
 export function Roast() {
   const [step, setStep] = useState(0);
+  const [swapping, setSwapping] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const level = roast.levels[step];
+
+  useEffect(() => {
+    setSwapping(true);
+    const t = setTimeout(() => setSwapping(false), 120);
+    return () => clearTimeout(t);
+  }, [step]);
 
   return (
     <section id="roast" className="section roast">
@@ -31,7 +40,7 @@ export function Roast() {
               <img
                 key={l.key}
                 src={l.image}
-                alt={`${l.name} roast beans, ${l.temp}`}
+                alt={`${l.name} 로스트 원두, ${l.temp}`}
                 className={`roast__visual-img${i === step ? " is-active" : ""}`}
                 width={1200}
                 height={900}
@@ -45,8 +54,8 @@ export function Roast() {
 
           <div className="roast__controls">
             <h3
-              className="roast__name"
-              style={{ color: level.color, fontVariationSettings: `"wght" ${level.weight}` }}
+              className={`roast__name${swapping ? " is-swapping" : ""}`}
+              style={{ color: level.color, fontWeight: level.weight }}
             >
               {level.name}
             </h3>
@@ -61,7 +70,7 @@ export function Roast() {
               onChange={(e) => setStep(Number(e.target.value))}
               className="roast__slider"
               style={{ ["--roast-color" as string]: level.color }}
-              aria-label="Roast level"
+              aria-label="로스트 레벨"
             />
             <div className="roast__slider-ticks">
               {roast.levels.map((l) => (

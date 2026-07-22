@@ -17,7 +17,7 @@ img, video { max-width: 100%; display: block; }
 main > section { scroll-margin-top: 76px; }
 a { color: inherit; }
 button { font: inherit; }
-h1, h2, h3, h4 { margin: 0; color: var(--heading); font-family: var(--font-display); font-weight: 460; }
+h1, h2, h3, h4 { margin: 0; color: var(--heading); font-family: var(--font-display); font-weight: 600; }
 
 /* focus visibility (WCAG 2.4.11) */
 a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {

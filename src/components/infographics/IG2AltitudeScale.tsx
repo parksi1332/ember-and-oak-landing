@@ -13,7 +13,7 @@ export function IG2AltitudeScale() {
     <div ref={ref} className="ig ig2">
       <div className="ig__head">
         <span className="tag-chip">IG-2</span>
-        <h3 className="ig__title">Grown thin on the air</h3>
+        <h3 className="ig__title">{ig2.title}</h3>
       </div>
       <div className="ig2__body">
         <div className="ig2__gauge">

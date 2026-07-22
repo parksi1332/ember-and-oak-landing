@@ -44,7 +44,7 @@ export function Origins() {
                     </span>
                     <span className="origins__card-notes">
                       <Icon name="leaf" />
-                      Notes: {card.notes}
+                      노트: {card.notes}
                     </span>
                   </span>
                 </button>
@@ -69,7 +69,7 @@ export function Origins() {
               ))}
               <path d="M0,150 Q200,90 400,140 L400,180 Q200,130 0,190 Z" fill="url(#belt)" />
               <text x="200" y="215" textAnchor="middle" className="origins__map-caption">
-                THE COFFEE BELT · 1,200~1,800m
+                {origins.mapCaption}
               </text>
             </svg>
 
